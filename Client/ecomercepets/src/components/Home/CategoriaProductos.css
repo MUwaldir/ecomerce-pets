@@ -1,0 +1,28 @@
+/* Estilos personalizados para los puntos del slider */
+.slick-dots {
+    /* Alineación de los puntos del slider */
+    text-align: center;
+    /* Espacio entre los puntos del slider */
+    margin-top: 20px;
+  }
+  
+  /* Estilos para los botones de los puntos del slider */
+  .slick-dots li button {
+    /* Tamaño y estilo del botón */
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    /* Margen entre los puntos */
+    margin: 0 5px;
+    /* Color del punto cuando no está activo */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Transición suave al cambiar de punto */
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Estilos para los puntos activos del slider */
+  .slick-dots li.slick-active button {
+    /* Color del punto activo */
+    background-color: red;
+  }
+  

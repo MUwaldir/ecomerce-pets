@@ -1,22 +1,33 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Modal from './Modal';
+import {useDispatch} from 'react-redux';
+import { addCarrito } from '../redux/actions/actions';
+const ProductCard = ({ product, isAuthenticated ,setModalCarrito}) => {
 
-const ProductCard = ({ product, isAuthenticated }) => {
+    const navigate = useNavigate()
+    const dispatch =  useDispatch()
   const [showModal, setShowModal] = useState(false);
 
   const handleAddToCart = () => {
     if (isAuthenticated) {
       // Lógica para agregar al carrito
       console.log('Producto agregado al carrito');
+      dispatch(addCarrito(product))
+      setModalCarrito(true)
+      
     } else {
       // Mostrar el modal si el usuario no está autenticado
       setShowModal(true);
     }
   };
-
   const handleModalClose = () => {
     setShowModal(false);
+  }
+
+  const handleModalAceptar = () => {
+    setShowModal(false);
+    navigate('/login')
   };
 
   return (
@@ -36,7 +47,7 @@ const ProductCard = ({ product, isAuthenticated }) => {
           <h2 className="text-lg font-semibold mb-2">Inicia sesión para continuar</h2>
           <p className="text-gray-600">Debes iniciar sesión para agregar productos al carrito.</p>
           <div className="flex justify-end mt-4">
-            <button onClick={handleModalClose} className="bg-blue-500 text-white py-2 px-4 mr-2 rounded-md">Aceptar</button>
+            <button onClick={handleModalAceptar} className="bg-blue-500 text-white py-2 px-4 mr-2 rounded-md">Aceptar</button>
             <button onClick={handleModalClose} className="bg-gray-300 text-gray-600 py-2 px-4 rounded-md">Cerrar</button>
           </div>
         </Modal>

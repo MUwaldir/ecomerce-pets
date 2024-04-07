@@ -16,13 +16,16 @@
     margin: 0 5px;
     /* Color del punto cuando no está activo */
     background-color: rgba(0, 0, 0, 0.5);
+  
+
     /* Transición suave al cambiar de punto */
     transition: background-color 0.3s ease;
+ 
   }
   
   /* Estilos para los puntos activos del slider */
   .slick-dots li.slick-active button {
     /* Color del punto activo */
-    background-color: red;
+    background-color: rgb(43, 255, 0);
   }
   

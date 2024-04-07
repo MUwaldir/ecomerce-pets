@@ -16,12 +16,12 @@ const ProductoBanners = ({ banners }) => {
   };
 
   return (
-    <div className="relative w-full overflow-hidden">
+    <div className="relative w-full overflow-hidden ">
       <Slider {...settings}>
         {banners.map((banner, index) => (
           <div key={index} className="w-full relative">
             <img className="w-full h-1/3 md:h-screen" src={banner.image} alt={banner.title} />
-            <div className="absolute bottom-0 left-0 right-0 p-4 bg-black bg-opacity-50">
+            <div className="absolute bottom-0 left-0 right-0 px-4 bg-black bg-opacity-50">
               <h3 className="text-white">{banner.title}</h3>
             </div>
           </div>

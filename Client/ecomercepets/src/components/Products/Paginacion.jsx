@@ -21,8 +21,8 @@ const Paginacion = ({ currentPage, totalPages, onPageChange }) => {
           </li>
           {/* Botones de páginas */}
           {pages.map((page) => (
-            <li key={page} className={`page-item mx-1 ${currentPage === page ? 'active' : ''}`}>
-              <button className="page-link" onClick={() => onPageChange(page)}>
+            <li key={page} className={`page-item mx-1 rounded-md hover:bg-slate-300 ${currentPage === page ? 'active bg-yellow-600' : ''}`}>
+              <button className="page-link shadow-xl  border-spacing-1 text-black  w-6" onClick={() => onPageChange(page)}>
                 {page}
               </button>
             </li>
@@ -39,6 +39,7 @@ const Paginacion = ({ currentPage, totalPages, onPageChange }) => {
           </li>
         </ul>
       </nav>
+    
     </div>
   );
 };

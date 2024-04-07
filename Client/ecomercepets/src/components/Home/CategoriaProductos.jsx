@@ -35,13 +35,13 @@ const CategoriaProductos = ({ categorias }) => {
           key={categoria.id}
           className="categoria bg-white shadow-md rounded-md p-4 overflow-hidden"
         >
-          <h2 className="text-xl font-semibold mb-4">{categoria.nombre}</h2>
-          <img
+          <h2 className="text-xl md:text-4xl font-semibold mb-4 text-center">{categoria.nombre}</h2>
+          {/* <img
             className="sm:w-1/5 h-32 object-cover rounded-md mb-4"
             src={categoria.imagen}
             alt={categoria.nombre}
-          />
-          <p className="text-gray-600 mb-4">{categoria.descripcion}</p>
+          /> */}
+          <p className="text-gray-600 md:text-2xl mb-4 text-center">{categoria.descripcion}</p>
           <Slider {...settings} className=" ">
             {categoria.productos.slice(0, 6).map((producto) => (
               <div key={producto.id} className="w-full ">

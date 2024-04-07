@@ -21,9 +21,9 @@ const Home = () => {
   return (
     <div className='flex-grow'>
      
-      <div className=" mx-auto mt-8">
-        <h1 className="text-3xl font-semibold mb-4">Bienvenido a PetStore</h1>
-        <p>Explora nuestra selección de accesorios para mascotas.</p>
+      <div className=" mx-auto">
+        {/* <h1 className="text-3xl font-semibold mb-4">Bienvenido a PetStore</h1>
+        <p>Explora nuestra selección de accesorios para mascotas.</p> */}
         {/* Aquí puedes agregar más contenido */}
         <div className='m-w-screen'>
 

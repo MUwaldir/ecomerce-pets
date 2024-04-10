@@ -25,7 +25,7 @@ const Filtros = ({ categorias, onCategoriaChange, onTipoAccesorioChange, onCosto
                 >
                     <option value="">Todas</option>
                     {categorias.map((categoria) => (
-                        <option key={categoria.id} value={categoria.nombre}>{categoria.nombre}</option>
+                        <option key={categoria.id} value={categoria.id}>{categoria.nombre}</option>
                     ))}
                 </select>
             </div>
@@ -37,9 +37,9 @@ const Filtros = ({ categorias, onCategoriaChange, onTipoAccesorioChange, onCosto
                     onChange={(e) => onTipoAccesorioChange(e.target.value)}
                 >
                     <option value="">Todos</option>
-                    <option value="Perro">Perro</option>
-                    <option value="Gato">Gato</option>
-                    <option value="Otros">Otros</option>
+                    <option value="perro">Perro</option>
+                    <option value="gato">Gato</option>
+                    <option value="otro">Otros</option>
                 </select>
             </div>
             {/* Filtro por costo */}
@@ -60,12 +60,12 @@ const Filtros = ({ categorias, onCategoriaChange, onTipoAccesorioChange, onCosto
                 <p className="text-sm mt-2">Valor actual: ${costoSeleccionado}</p>
             </div>
             {/* Botón para aplicar filtros */}
-            <button
+            {/* <button
                 onClick={handleAplicarFiltros}
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             >
                 Aplicar filtros
-            </button>
+            </button> */}
         </div>
     );
 }

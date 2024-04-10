@@ -22,6 +22,7 @@ const ProductDetail = ({ isAuthenticated }) => {
       // Lógica para agregar al carrito para usuarios autenticados
       console.log("Producto agregado al carrito");
       dispatch(addCarrito(product));
+      setModalCarrito(true)
       // Aquí podrías redirigir al usuario al carrito
     } else {
       // Mostrar el modal si el usuario no está autenticado

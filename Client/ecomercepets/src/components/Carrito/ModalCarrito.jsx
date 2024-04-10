@@ -8,6 +8,7 @@ import {
   setCarrito,
 } from "../../redux/actions/actions";
 import { Link } from "react-router-dom";
+import "./ModalCarrito.css";
 const ModalCarrito = () => {
   const dispatch = useDispatch();
   const carrito = useSelector((state) => state.carrito);
@@ -26,7 +27,7 @@ const ModalCarrito = () => {
         carritoRef.current && carritoRef.current.contains(event.target);
       const isEliminarProducto =
         event.target.classList.contains("eliminar-producto");
-
+        console.log(modalVisible,!isInsideCarrito,!isEliminarProducto)
       if (modalVisible && !isInsideCarrito && !isEliminarProducto) {
         closeModal();
       }
@@ -43,12 +44,11 @@ const ModalCarrito = () => {
 
   useEffect(() => {
     setModalVisible(true);
-    // if (carrito.length > 0) {
-    //   localStorage.setItem("carrito", JSON.stringify(carrito));
-    // }
-    const valorTotal = carrito.reduce((total, producto) => {
-      return total + producto.price * producto.cantidad;
-    }, 0).toFixed(2);
+    const valorTotal = carrito
+      .reduce((total, producto) => {
+        return total + producto.price * producto.cantidad;
+      }, 0)
+      .toFixed(2);
     setSubtotal(valorTotal);
 
     localStorage.setItem("carrito", JSON.stringify(carrito));
@@ -89,13 +89,16 @@ const ModalCarrito = () => {
             />
           </svg>
         </button>
-        <div className="flex flex-col justify-around h-full" ref={carritoRef}>
+        <div
+          className="flex flex-col justify-around h-full eliminar-producto"
+          ref={carritoRef}
+        >
           <h2 className="text-2xl  top-4 font-bold mb-4 text-gray-800">
             Tu Carrito de Compras
           </h2>
           <div
-            className="top-40 overflow-y-auto"
-            style={{ scrollbarWidth: "thin", scrollbarColor: "green" }}
+            className="top-40 overflow-y-auto productos_carrito "
+            
           >
             {carrito.length > 0 ? (
               carrito.map((producto) => (
@@ -103,54 +106,58 @@ const ModalCarrito = () => {
                   key={producto.id}
                   className="flex items-center justify-center mb-4"
                 >
-                  <img
-                    src={producto.image}
-                    alt=""
-                    className="w-24 h-12 object-cover mr-4 rounded-lg"
-                  />
-                  <div className="w-3/4 mr-2 my-2 relative ">
-                    <button
-                      className="absolute top-2 right-2 text-gray-600 hover:text-gray-800 eliminar-producto"
-                      onClick={() => handleEliminarProducto(producto.id)}
-                    >
-                      <svg
-                        className="w-4 h-4 eliminar-producto"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M6 18L18 6M6 6l12 12"
-                        />
-                      </svg>
-                    </button>
-                    <p className="text-gray-800">{producto.name}</p>
-                    <p className="text-gray-600">Cantidad: {producto.price}</p>
-                    <div className="flex justify-around border border-spacing-1 border-black">
+                  <div className="flex items-center justify-center w-1/3">
+                    <img
+                      src={producto.image}
+                      alt={producto.name}
+                      className="w-16 h-16 rounded-md"
+                    />
+                  </div>
+                  <div className="flex flex-col justify-center w-2/3 px-4">
+                    <p className="text-gray-800 text-lg">{producto.name}</p>
+                    <p className="text-gray-600">
+                      Precio: ${producto.price.toFixed(2)}
+                    </p>
+                    <div className="flex items-center mt-2">
                       <button
                         disabled={producto.cantidad === 1}
                         onClick={() =>
                           dispatch(reduceCantidadCarrito(producto.id))
                         }
-                        className="hover:bg-slate-200 px-2"
+                        className="text-gray-600 hover:text-gray-800 focus:outline-none"
                       >
                         -
                       </button>
-                      <p>{producto.cantidad}</p>
+                      <p className="mx-2">{producto.cantidad}</p>
                       <button
                         disabled={producto.cantidad >= 10}
                         onClick={() =>
                           dispatch(addCantidadCarrito(producto.id))
                         }
-                        className="hover:bg-slate-200 px-2"
+                        className="text-gray-600 hover:text-gray-800 focus:outline-none"
                       >
                         +
                       </button>
                     </div>
                   </div>
+                  <button
+                    onClick={() => handleEliminarProducto(producto.id)}
+                    className="text-gray-600 hover:text-gray-800 focus:outline-none ml-auto "
+                  >
+                    <svg
+                      className="w-6 h-6 text-red-500 hover:bg-slate-200 eliminar-producto"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  </button>
                 </div>
               ))
             ) : (

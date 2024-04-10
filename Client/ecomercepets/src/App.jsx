@@ -12,17 +12,26 @@ import Register from "./pages/Register";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { useDispatch } from "react-redux";
-import { setCarrito } from "./redux/actions/actions";
+import { fetchCategorias, fetchProductos, setCarrito } from "./redux/actions/actions";
+import productos from "./utils/accesorios"
+import categorias from "./utils/categorias"
+
 function App() {
   const dispatch = useDispatch();
+  // const data = productos
   useEffect(() => {
+    dispatch(fetchProductos(productos))
+    dispatch(fetchCategorias(categorias))
+
     const storedCarrito = localStorage.getItem("carrito");
-    console.log(storedCarrito);
+    // console.log(storedCarrito);
     if (storedCarrito && storedCarrito.length > 0) {
       console.log("·activado el vaio");
-      dispatch(setCarrito(JSON.parse(storedCarrito)));
+      dispatch(setCarrito(JSON.stringify(storedCarrito)));
     }
   }, []);
+
+  console.log(productos);
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />

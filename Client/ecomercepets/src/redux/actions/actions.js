@@ -8,6 +8,10 @@ export const SET_CARRITO = "SET_CARRITO";
 export const ELIMINA_PRODUCTO_CARRITO = "ELIMINA_PRODUCTO_CARRITO";
 export const REDUCE_CANTIDAD_CARRITO = "REDUCE_CANTIDAD_CARRITO";
 export const ADD_CANTIDAD_CARRITO = "ADD_CANTIDAD_CARRITO";
+export const FECTH_PRODUCTOS = "FECTH_PRODUCTOS";
+export const FECTH_CATEGORIAS = "FECTH_CATEGORIAS";
+
+
 
 
 
@@ -22,6 +26,21 @@ export const fetchMovie = (movie) => ({
   payload: movie,
 });
 
+export const fetchProductos = (products) => (dispatch) =>{
+  
+  return dispatch({
+    type: "FECTH_PRODUCTOS",
+    payload: products,
+  });
+}
+
+export const fetchCategorias = (categorias) => (dispatch) =>{
+  
+  return dispatch({
+    type: "FECTH_CATEGORIAS",
+    payload: categorias,
+  });
+}
 export const addCarrito = (product) => (dispatch) => {
   return dispatch({
     type: "ADD_CARRITO",

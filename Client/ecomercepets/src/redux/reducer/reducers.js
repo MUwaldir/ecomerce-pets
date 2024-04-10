@@ -1,6 +1,8 @@
 const initialState = {
   movie: null,
   carrito: [],
+  productos: [],
+  categorias:[],
 };
 
 const actualizarCantidadProducto = (carrito, id, cantidad) => {
@@ -19,6 +21,10 @@ const proyectoEcomercePets = (state = initialState, action) => {
   switch (action.type) {
     case "FETCH_MOVIE":
       return { ...state, movie: action.payload };
+    case "FECTH_PRODUCTOS":
+      return { ...state, productos: action.payload };
+    case "FECTH_CATEGORIAS":
+      return { ...state,  categorias: action.payload };
 
     case "SET_CARRITO":
       return { ...state, carrito: action.payload };

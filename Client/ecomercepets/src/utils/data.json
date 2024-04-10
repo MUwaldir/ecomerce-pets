@@ -1,0 +1,91 @@
+[
+    {
+      "id": 1,
+      "nombre": "Alimentos y Snacks",
+      "descripcion": "Comida seca, comida húmeda, snacks y golosinas para mascotas.",
+      "imagen": "https://picsum.photos/200/300",
+      "productos": [
+        {
+          "id": "_0w9nxy21u",
+          "name": "Transportadora",
+          "price": 50,
+          "image": "transportadora.jpg",
+          "description": "Descripción del accesorio 1"
+        },
+        {
+          "id": "_82rdyjw1m",
+          "name": "Transportadora",
+          "price": 50,
+          "image": "transportadora.jpg",
+          "description": "Descripción del accesorio 2"
+        },
+        {
+          "id": "_h1g62x1sw",
+          "name": "Caseta",
+          "price": 55,
+          "image": "caseta.jpg",
+          "description": "Descripción del accesorio 3"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "nombre": "Juguetes",
+      "descripcion": "Juguetes para perros, gatos y otras mascotas.",
+      "imagen": "https://picsum.photos/200/300",
+      "productos": [
+        {
+          "id": "_bhd1chf0f",
+          "name": "Cama",
+          "price": 25,
+          "image": "cama.jpg",
+          "description": "Descripción del accesorio 1"
+        },
+        {
+          "id": "_uzj5ir4vm",
+          "name": "Cepillo",
+          "price": 45,
+          "image": "cepillo.jpg",
+          "description": "Descripción del accesorio 2"
+        },
+        {
+          "id": "_fsq2k5ki2",
+          "name": "Transportadora",
+          "price": 50,
+          "image": "transportadora.jpg",
+          "description": "Descripción del accesorio 3"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "nombre": "Ropa y Accesorios",
+      "descripcion": "Ropa para perros y gatos, collares, correas, arneses, etc.",
+      "imagen": "https://picsum.photos/200/300",
+      "productos": [
+        {
+          "id": "_v1ocd7pua",
+          "name": "Collar",
+          "price": 10,
+          "image": "collar.jpg",
+          "description": "Descripción del accesorio 1"
+        },
+        {
+          "id": "_g8lcwj0v8",
+          "name": "Cepillo",
+          "price": 45,
+          "image": "cepillo.jpg",
+          "description": "Descripción del accesorio 2"
+        },
+        {
+          "id": "_v76n9mfie",
+          "name": "Juguete",
+          "price": 20,
+          "image": "juguete.jpg",
+          "description": "Descripción del accesorio 3"
+        }
+      ]
+    }
+  
+  ]
+  

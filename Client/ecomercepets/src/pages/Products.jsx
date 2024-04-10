@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsGrid1X2, BsGrid3X2, BsGrid3X3 } from "react-icons/bs";
 import ProductCard from "../components/ProductCard";
-import accesorios from "../utils/accesorios";
 import Filtros from "../components/Products/Filtros";
-import categorias from "../utils/categorias";
+// import categorias from "../utils/categorias";
 import Paginacion from "../components/Products/Paginacion";
 import ModalCarrito from "../components/Carrito/ModalCarrito";
-
+import { useSelector } from "react-redux";
 const Products = () => {
+  const productos = useSelector((state) => state.productos);
+  const categorias = useSelector((state) => state.categorias);
+
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("");
   const [tipoAccesorioSeleccionado, setTipoAccesorioSeleccionado] =
     useState("");
@@ -15,7 +17,7 @@ const Products = () => {
 
   const [columnas, setColumnas] = useState(3); // Estado para almacenar la cantidad de columnas seleccionadas
   const [currentPage, setCurrentPage] = useState(1);
-  const products = accesorios;
+  // const products = productos;
   const isAuthenticated = true;
 
   const [modalCarrito, setModalCarrito] = useState(false);
@@ -44,12 +46,12 @@ const Products = () => {
     // Filtrar por tipo de accesorio
     if (
       tipoAccesorioSeleccionado &&
-      product.tipo !== tipoAccesorioSeleccionado
+      product.animal !== tipoAccesorioSeleccionado
     ) {
       return false;
     }
     // Filtrar por costo
-    if (costoSeleccionado && product.costo > costoSeleccionado) {
+    if (costoSeleccionado && product.price > costoSeleccionado) {
       return false;
     }
     return true;
@@ -66,18 +68,21 @@ const Products = () => {
   // Calcular el índice del primer producto en la página actual
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   // Obtener los productos de la página actual
-  const currentProducts = products
+  const currentProducts = productos
     .filter(filtrarProductos)
     .slice(indexOfFirstProduct, indexOfLastProduct);
-  const totalProducts = products.filter(filtrarProductos).length;
+  const totalProducts = productos.filter(filtrarProductos).length;
   const totalPages = Math.ceil(totalProducts / productsPerPage);
 
-  console.log(modalCarrito)
-  console.log(localStorage.getItem("carrito"))
+  // console.log(modalCarrito)
+  // console.log(localStorage.getItem("carrito"))
+
+    console.log(productos);
+
   return (
     <div className="container flex mx-auto mt-8 ">
       {/* Sidebar para filtros */}
-      <div className="w-1/4 mr-8">
+      <div className="w-1/4 ">
         {/* Componente Filtros */}
 
         <Filtros

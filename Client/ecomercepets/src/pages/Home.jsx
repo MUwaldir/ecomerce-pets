@@ -6,7 +6,8 @@ import OfertasEspeciales from '../components/Home/OfertasEspeciales';
 import ProductoBanners from '../components/Home/ProductoBanners';
 import ProductosDestacados from '../components/Home/ProductosDestacados';
 import SeccionConsejos from '../components/Home/SeccionConsejos';
-import categorias from '../utils/categorias';
+// import categorias from '../utils/categorias';
+import {useSelector} from "react-redux";
 const Home = () => {
     const banners =  [
         { image: 'https://images.pexels.com/photos/17767834/pexels-photo-17767834/free-photo-of-un-desorden-creativo-sobre-una-mesa-de-marmol-fotografia-de-jovan-vasiljevic.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2', title: 'Título del Banner 1' },
@@ -17,7 +18,9 @@ const Home = () => {
         // Agrega más objetos de banner según sea necesario
       ]
     
-      console.log(categorias)
+      const productos = useSelector((state) => state.productos)
+      const categorias = useSelector((state) => state.categorias)
+
   return (
     <div className='flex-grow'>
      
@@ -29,7 +32,7 @@ const Home = () => {
 
         <ProductoBanners banners={banners}/>
         </div>
-        <CategoriaProductos categorias={categorias}/>
+        <CategoriaProductos categorias={categorias} productos={productos}/>
         {/* <ProductosDestacados/>
         <OfertasEspeciales/>
         <SeccionConsejos/> */}

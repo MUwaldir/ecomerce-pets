@@ -37,6 +37,9 @@ const ProductCard = ({ product, isAuthenticated ,setModalCarrito}) => {
         <img src={product.image} alt={product.name} className="w-full h-48 object-cover mb-4" />
         <h2 className="text-lg font-semibold">{product.name}</h2>
         <p className="text-gray-600">${product.price}</p>
+        <p>{product.id}</p>
+        <p>{product.categoria}</p>
+
       </Link>
 
       <button onClick={handleAddToCart} className="bg-blue-500 text-white py-2 px-4 mt-2 rounded-md">Agregar al Carrito</button>

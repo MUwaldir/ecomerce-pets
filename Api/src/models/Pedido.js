@@ -1,12 +1,13 @@
 import { DataTypes } from 'sequelize';
-
+import { v4 as uuidv4 } from 'uuid';
 const PedidoModel = (sequelize) => {
 
 const Pedido = sequelize.define('Pedido', {
   id: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.UUID,
     primaryKey: true,
-    autoIncrement: true
+    defaultValue: () => uuidv4()
+
   },
   fechaPedido: {
     type: DataTypes.DATE,

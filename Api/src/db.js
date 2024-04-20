@@ -10,6 +10,9 @@ import PedidoModel from './models/Pedido.js';
 import DetallePedidoModel from './models/DetallePedido.js';
 import ComentarioValoracionModel from './models/ComentarioValoracion.js';
 import CarritoCompraModel from './models/CarritoCompra.js';
+import InventarioModel from './models/Inventario.js';
+import MarcaModel from './models/Marca.js';
+import DescuentoModel from './models/Descuento.js';
 
 
 dotenv.config();
@@ -79,6 +82,12 @@ const Pedido = PedidoModel(sequelize);
 const DetallePedido = DetallePedidoModel(sequelize);
 const ComentarioValoracion = ComentarioValoracionModel(sequelize);
 const CarritoCompra = CarritoCompraModel(sequelize);
+const Inventario = InventarioModel(sequelize);
+const Marca = MarcaModel(sequelize);
+const Descuento = DescuentoModel(sequelize);
+
+
+
 
 Producto.belongsTo(CategoriaProducto);
 CategoriaProducto.hasMany(Producto);
@@ -94,6 +103,19 @@ Usuario.hasMany(CarritoCompra);
 CarritoCompra.belongsTo(Usuario);
 Producto.hasMany(CarritoCompra);
 CarritoCompra.belongsTo(Producto);
+
+Producto.belongsTo(Inventario);
+Inventario.hasOne(Producto);
+
+Producto.belongsTo(Marca);
+Marca.hasMany(Producto);
+
+Producto.belongsToMany(Descuento, { through: 'ProductoDescuento' });
+Descuento.belongsToMany(Producto, { through: 'ProductoDescuento' });
+
+
+
+
 
 // Sincronizar modelos con la base de datos
 sequelize.sync({ force: false })

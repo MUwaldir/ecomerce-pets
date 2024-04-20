@@ -1,4 +1,5 @@
 import { DataTypes } from 'sequelize';
+import { v4 as uuidv4 } from 'uuid';
 
 const UsuarioModel = (sequelize) => {
 
@@ -7,9 +8,9 @@ const Usuario = sequelize.define(
   "Usuario",
   {
   id: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.UUID,
     primaryKey: true,
-    autoIncrement: true
+    defaultValue: () => uuidv4()
   },
   nombre: {
     type: DataTypes.STRING,

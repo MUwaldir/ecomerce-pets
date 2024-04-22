@@ -1,19 +1,18 @@
 // En index.js (o cualquier nombre que desees)
 
-import { Sequelize, DataTypes } from 'sequelize';
-import dotenv from 'dotenv';
+import { Sequelize, DataTypes } from "sequelize";
+import dotenv from "dotenv";
 
-import CategoriaProductoModel from './models/CategoriaProducto.js';
-import ProductoModel from './models/Producto.js';
-import UsuarioModel from './models/Usuarios.js';
-import PedidoModel from './models/Pedido.js';
-import DetallePedidoModel from './models/DetallePedido.js';
-import ComentarioValoracionModel from './models/ComentarioValoracion.js';
-import CarritoCompraModel from './models/CarritoCompra.js';
-import InventarioModel from './models/Inventario.js';
-import MarcaModel from './models/Marca.js';
-import DescuentoModel from './models/Descuento.js';
-
+import CategoriaProductoModel from "./models/CategoriaProducto.js";
+import ProductoModel from "./models/Producto.js";
+import UsuarioModel from "./models/Usuarios.js";
+import PedidoModel from "./models/Pedido.js";
+import DetallePedidoModel from "./models/DetallePedido.js";
+import ComentarioValoracionModel from "./models/ComentarioValoracion.js";
+import CarritoCompraModel from "./models/CarritoCompra.js";
+import InventarioModel from "./models/Inventario.js";
+import MarcaModel from "./models/Marca.js";
+import DescuentoModel from "./models/Descuento.js";
 
 dotenv.config();
 
@@ -28,50 +27,6 @@ const sequelize = new Sequelize(
 );
 
 
-// const Producto = sequelize.define('Producto', {
-//   id: {
-//     type: DataTypes.INTEGER,
-//     primaryKey: true,
-//     autoIncrement: true
-//   },
-//   nombre: {
-//     type: DataTypes.STRING,
-//     allowNull: false
-//   },
-//   descripcion: {
-//     type: DataTypes.TEXT,
-//     allowNull: false
-//   },
-//   precio: {
-//     type: DataTypes.DECIMAL(10, 2),
-//     allowNull: false
-//   },
-//   cantidadEnStock: {
-//     type: DataTypes.INTEGER,
-//     allowNull: false
-//   },
-//   imagen: {
-//     type: DataTypes.STRING,
-//     allowNull: false
-//   }
-// });
-
-// const CategoriaProducto = sequelize.define('CategoriaProducto', {
-//   // Definir atributos de la categoría del producto si es necesario
-//   id: {
-//     type: DataTypes.INTEGER,
-//     primaryKey: true,
-//     autoIncrement: true
-//   },
-//   nombre: {
-//     type: DataTypes.STRING,
-//     allowNull: false
-//   },
-//   descripcion: {
-//     type: DataTypes.TEXT,
-//     allowNull: false
-//   }
-// });
 
 // Definir relaciones
 // Definir modelos
@@ -85,9 +40,6 @@ const CarritoCompra = CarritoCompraModel(sequelize);
 const Inventario = InventarioModel(sequelize);
 const Marca = MarcaModel(sequelize);
 const Descuento = DescuentoModel(sequelize);
-
-
-
 
 Producto.belongsTo(CategoriaProducto);
 CategoriaProducto.hasMany(Producto);
@@ -104,29 +56,57 @@ CarritoCompra.belongsTo(Usuario);
 Producto.hasMany(CarritoCompra);
 CarritoCompra.belongsTo(Producto);
 
-Producto.belongsTo(Inventario);
-Inventario.hasOne(Producto);
+// Producto.belongsTo(Inventario);
+// Inventario.hasOne(Producto);
+
+// Modelo de la tabla intermedia InventarioProducto
+const InventarioProducto = sequelize.define('InventarioProducto', {
+  cantidad: {
+    type: DataTypes.INTEGER, // O el tipo de datos adecuado para la cantidad
+    allowNull: false
+  }
+});
+
+// Definir la relación muchos a muchos entre Producto e Inventario
+Producto.belongsToMany(Inventario, {
+  through: InventarioProducto,
+  as: 'inventarios'
+});
+
+Inventario.belongsToMany(Producto, {
+  through: InventarioProducto,
+  as: 'productos'
+});
 
 Producto.belongsTo(Marca);
 Marca.hasMany(Producto);
 
-Producto.belongsToMany(Descuento, { through: 'ProductoDescuento' });
-Descuento.belongsToMany(Producto, { through: 'ProductoDescuento' });
-
-
-
-
+Producto.belongsToMany(Descuento, { through: "ProductoDescuento" });
+Descuento.belongsToMany(Producto, { through: "ProductoDescuento" });
 
 // Sincronizar modelos con la base de datos
-sequelize.sync({ force: false })
+sequelize
+  .sync({ force: false })
   .then(() => {
-    console.log('All models were synchronized successfully.');
+    console.log("All models were synchronized successfully.");
   })
   .catch((error) => {
-    console.error('Error synchronizing models:', error);
+    console.error("Error synchronizing models:", error);
   });
 
 // Exportar los modelos y la conexión a la base de datos
-export { Producto, CategoriaProducto, sequelize };
+export {
+  Producto,
+  CategoriaProducto,
+  Usuario,
+  Pedido,
+  DetallePedido,
+  Descuento,
+  Marca,
+  CarritoCompra,
+  Inventario,
+  ComentarioValoracion,
+  sequelize,
+  InventarioProducto
+};
 // export default sequelize;
-

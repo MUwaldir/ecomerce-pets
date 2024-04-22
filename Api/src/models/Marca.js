@@ -15,6 +15,14 @@ const MarcaModel = (sequelize) => {
     descripcion: {
       type: DataTypes.TEXT,
       allowNull: false
+    },
+    imagen: {
+      type: DataTypes.STRING, // Tipo de dato para la URL de la imagen
+      allowNull: true // Permitir que la imagen sea opcional
+    },
+    prueba:{
+        type: DataTypes.STRING, // Tipo de dato para la URL de la imagen
+        allowNull: true // Permitir que la imagen sea opcional
     }
   });
   return Marca;

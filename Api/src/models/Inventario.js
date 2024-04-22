@@ -8,10 +8,7 @@ const InventarioModel = (sequelize) => {
       primaryKey: true,
       defaultValue: () => uuidv4()
     },
-    cantidad: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
+
     ubicacion: {
       type: DataTypes.STRING,
       allowNull: false

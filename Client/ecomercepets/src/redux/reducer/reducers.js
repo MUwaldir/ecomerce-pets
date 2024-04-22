@@ -24,6 +24,7 @@ const proyectoEcomercePets = (state = initialState, action) => {
     case "FECTH_PRODUCTOS":
       return { ...state, productos: action.payload };
     case "FECTH_CATEGORIAS":
+      console.log(action.payload);  
       return { ...state,  categorias: action.payload };
 
     case "SET_CARRITO":

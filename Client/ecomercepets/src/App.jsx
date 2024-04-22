@@ -14,14 +14,14 @@ import Footer from "./components/Footer";
 import { useDispatch } from "react-redux";
 import { fetchCategorias, fetchProductos, setCarrito } from "./redux/actions/actions";
 import productos from "./utils/accesorios"
-import categorias from "./utils/categorias"
+// import categorias from "./utils/categorias"
 
 function App() {
   const dispatch = useDispatch();
   // const data = productos
   useEffect(() => {
     dispatch(fetchProductos(productos))
-    dispatch(fetchCategorias(categorias))
+    dispatch(fetchCategorias())
 
     const storedCarrito = localStorage.getItem("carrito");
     // console.log(storedCarrito);

@@ -34,12 +34,25 @@ export const fetchProductos = (products) => (dispatch) =>{
   });
 }
 
-export const fetchCategorias = (categorias) => (dispatch) =>{
+export const fetchCategorias = () => (dispatch) =>{
+  fetch(URL_API + "/getcategorias")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Error al obtener categorias");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      dispatch({
+        type: "FECTH_CATEGORIAS",
+        payload: data.categorias,
+      });
+    })
+    .catch((error) => {
+      console.error("Error en fetchCategorias:", error);
+      // Puedes despachar una acción adicional aquí para manejar el error
+    });
   
-  return dispatch({
-    type: "FECTH_CATEGORIAS",
-    payload: categorias,
-  });
 }
 export const addCarrito = (product) => (dispatch) => {
   return dispatch({

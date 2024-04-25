@@ -22,6 +22,7 @@ const proyectoEcomercePets = (state = initialState, action) => {
     case "FETCH_MOVIE":
       return { ...state, movie: action.payload };
     case "FECTH_PRODUCTOS":
+      console.log(action.payload);
       return { ...state, productos: action.payload };
     case "FECTH_CATEGORIAS":
       console.log(action.payload);  

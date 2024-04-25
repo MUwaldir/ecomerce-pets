@@ -13,14 +13,14 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { useDispatch } from "react-redux";
 import { fetchCategorias, fetchProductos, setCarrito } from "./redux/actions/actions";
-import productos from "./utils/accesorios"
+// import productos from "./utils/accesorios"
 // import categorias from "./utils/categorias"
 
 function App() {
   const dispatch = useDispatch();
   // const data = productos
   useEffect(() => {
-    dispatch(fetchProductos(productos))
+    dispatch(fetchProductos())
     dispatch(fetchCategorias())
 
     const storedCarrito = localStorage.getItem("carrito");
@@ -31,7 +31,7 @@ function App() {
     }
   }, []);
 
-  console.log(productos);
+  // console.log(productos);
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />

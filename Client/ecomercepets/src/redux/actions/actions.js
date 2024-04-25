@@ -26,12 +26,25 @@ export const fetchMovie = (movie) => ({
   payload: movie,
 });
 
-export const fetchProductos = (products) => (dispatch) =>{
-  
-  return dispatch({
-    type: "FECTH_PRODUCTOS",
-    payload: products,
+export const fetchProductos = () => (dispatch) =>{
+  fetch(URL_API + "/getproductos")
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("Error al obtener productos");
+    }
+    return response.json();
+  })
+  .then((data) => {
+    dispatch({
+      type: "FECTH_PRODUCTOS",
+      payload: data.productos,
+    });
+  })
+  .catch((error) => {
+    console.error("Error en fetchCategorias:", error);
+    // Puedes despachar una acción adicional aquí para manejar el error
   });
+
 }
 
 export const fetchCategorias = () => (dispatch) =>{

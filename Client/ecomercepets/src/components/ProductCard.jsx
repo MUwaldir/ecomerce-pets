@@ -34,11 +34,11 @@ const ProductCard = ({ product, isAuthenticated ,setModalCarrito}) => {
     <div className="bg-white shadow-md rounded-md p-4">
       {/* Enlace al detalle del producto */}
       <Link to={`/products/${product.id}`}>
-        <img src={product.image} alt={product.name} className="w-full h-48 object-cover mb-4" />
-        <h2 className="text-lg font-semibold">{product.name}</h2>
-        <p className="text-gray-600">${product.price}</p>
+        <img src={product.imagen} alt={product.nombre} className="w-full h-48 object-cover mb-4" />
+        <h2 className="text-lg font-semibold">{product.nombre}</h2>
+        <p className="text-gray-600">${product.precio}</p>
         <p>{product.id}</p>
-        <p>{product.categoria}</p>
+        <p>{product.CategoriaProducto.nombre}</p>
 
       </Link>
 
